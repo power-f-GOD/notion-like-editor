@@ -1,3 +1,25 @@
-<nav class="bg-red-200">
-  This is the nav!ddd
+<nav class="">
+  <div class="flex px-3 py-2 gap-5 justify-between sm:py-3.5 sm:px-3">
+    <section class="flex max-w-[50%] items-center">
+      <button class="p-2">%caret-double-right%</button>
+
+      <span
+        class="flex items-center gap-0.5 pl-5 opacity-60 max-w-[calc(100%-2.5rem)] sm:max-w-[calc(100%-2.25rem)] sm:pl-10">
+        %book-open% <span class="ml-1.5 truncate"><a href='#!' class="font-semibold">Main</a>
+          <span class="mx-1.5">/</span> Getting
+          Started
+          <span class="mx-1.5">/</span>
+          Front-end developer test
+          project</span>
+      </span>
+    </section>
+
+    <section class="flex items-center gap-2 max-w-[calc(50%-1.25rem)]">
+      <button class="opacity-50 gap-2 p-2.5 hidden md:inline-flex">
+        %lock-key-open% Editing
+      </button>
+      <hr class="h-5 hidden md:block" />
+      <button class="text-blue-500 font-semibold gap-2 p-2.5 py-2">Publish Space %caret-down%</button>
+    </section>
+  </div>
 </nav>

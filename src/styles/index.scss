@@ -1,6 +1,4 @@
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -28,13 +26,40 @@ body {
   min-height: 100vh;
 }
 
+* {
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+}
+
+button {
+  // border: none;
+  // background: none;
+  font-size: inherit;
+  // cursor: pointer;
+  @apply inline-flex items-center justify-center transition-all duration-300 cursor-pointer bg-transparent border-none rounded-md whitespace-nowrap;
+
+  &:hover,
+  &:focus {
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
+
+a {
+  @apply transition-all duration-300;
+
+  &:hover,
+  &:focus {
+    @apply text-blue-900;
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }
+
+@tailwind components;
+@tailwind utilities;

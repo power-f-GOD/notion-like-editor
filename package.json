@@ -13,7 +13,7 @@
     "test": "jest",
     "test:w": "jest --updateSnapshot && jest --watch",
     "postinstall": "husky install",
-    "produce": "git checkout main && git pull origin main && git merge dev && git push && git checkout dev"
+    "produce": "git checkout main && git pull origin main && git merge dev && git push && git checkout dev && git push"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
