@@ -3,6 +3,6 @@ module.exports = {
   corePlugins: {
     preflight: false,
   },
-  content: ["./src/components/**/*.{ts,html}"],
+  content: ["./src/**/*.{ts,html}"],
   plugins: [],
 };
