@@ -5,9 +5,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  // color-scheme: light dark;
+  // color: rgba(255, 255, 255, 0.87);
+  // background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,7 +29,7 @@ body {
 * {
   box-sizing: border-box;
   font-family: inherit;
-  color: inherit;
+  color: currentColor;
 }
 
 button {
@@ -39,9 +39,16 @@ button {
   // cursor: pointer;
   @apply inline-flex items-center justify-center transition-all duration-300 cursor-pointer bg-transparent border-none rounded-md whitespace-nowrap;
 
-  &:hover,
-  &:focus {
-    background: rgba(0, 0, 0, 0.05);
+  &.disabled,
+  &[tabindex='-1'] {
+    cursor: not-allowed;
+  }
+
+  &:not([tabindex='-1']) {
+    &:hover,
+    &:focus {
+      background: rgba(0, 0, 0, 0.05);
+    }
   }
 }
 
