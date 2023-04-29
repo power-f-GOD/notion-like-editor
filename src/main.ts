@@ -1,9 +1,8 @@
 import './styles/index.scss';
-import { Nav, Main, Menu } from './components';
-import { Q } from './utils';
+import { nav, main, menu } from './components';
 
-Q('#app')!.innerHTML = `
-  ${Nav()}
-  ${Main()}
-  ${Menu()}
+document.querySelector('#app')!.innerHTML = `
+  ${nav.render()}
+  ${main.render()}
+  ${menu.render()}
 `;

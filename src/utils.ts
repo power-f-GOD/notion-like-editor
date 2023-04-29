@@ -1,15 +1,14 @@
-export const Q = document.querySelector.bind(document);
-export const QAll = document.querySelectorAll.bind(document);
-
 export const preprocess = <Match extends string, Value extends string = string>(
   input: string,
-  entries: Partial<Record<Match, Value>>
+  variables?: Partial<Record<Match, Value>>
 ) => {
+  if (!variables) return input;
+
   let processed = input.slice();
   let match: Match;
 
-  for (match in entries) {
-    processed = processed.replace(`%${match}%`, entries[match]!);
+  for (match in variables) {
+    processed = processed.replace(`%${match}%`, variables[match]!);
   }
 
   return processed;
