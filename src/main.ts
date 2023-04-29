@@ -1,5 +1,5 @@
 import './styles/index.scss';
-import { Nav, SVGIcon, Main } from './components';
+import { Nav, SVGIcon, Main, Menu } from './components';
 import { preprocess } from './utils';
 import type { SVGIconName } from './types';
 
@@ -16,5 +16,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     'check-circle': SVGIcon('check-circle'),
     cloud: SVGIcon('cloud'),
     'dots-three-vertical': SVGIcon('dots-three-vertical')
+  })}
+  ${preprocess<SVGIconName>(Menu, {
+    'text-t': SVGIcon('text-t', 'min-w-[1.75rem] opacity-40')
   })}
 `;

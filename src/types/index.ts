@@ -1,4 +1,5 @@
 export type SVGIconName =
+  | 'text-t'
   | 'dots-three-vertical'
   | 'cloud'
   | 'arrow-down-left'

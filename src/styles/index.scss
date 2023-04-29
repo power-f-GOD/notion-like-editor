@@ -52,6 +52,17 @@ button {
   }
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 a {
   @apply transition-all duration-300;
 
@@ -61,12 +72,39 @@ a {
   }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.debugger {
+  &,
+  * {
+    border: 1px solid red;
   }
 }
+
+.menu-overlay {
+  [role='menu'] {
+    transition: 0.35s, visibility 0s ease 0.35s;
+    transform: scale(0.85);
+    opacity: 0;
+    transform-origin: top left;
+    visibility: hidden;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  &.show-menu {
+    [role='menu'] {
+      visibility: visible;
+      transition: 0.35s, visibility 0s ease 0s;
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+// @media (prefers-color-scheme: light) {
+//   :root {
+//     color: #213547;
+//     background-color: #ffffff;
+//   }
+// }
 
 @tailwind components;
 @tailwind utilities;
