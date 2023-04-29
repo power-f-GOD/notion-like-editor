@@ -5,7 +5,7 @@ import nav from './component.html?raw';
 
 export const Nav = () => {
   setTimeout(() => {
-    console.log('Nav component!');
+    console.log('Nav component mounted!');
   });
 
   return preprocess<SVGIconName>(nav, {

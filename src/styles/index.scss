@@ -113,7 +113,7 @@ a {
 [data-textarea] {
   &:focus:empty::after {
     @apply opacity-40 pointer-events-none;
-    content: 'Type / for block, @ to link docs or people';
+    content: attr(placeholder);
   }
 }
 

@@ -6,7 +6,7 @@ import textareaHtml from './textarea.html?raw';
 
 export const Main = () => {
   setTimeout(() => {
-    console.log('Main component!');
+    console.log('Main component mounted!');
   });
 
   return preprocess<SVGIconName>(mainHtml, {
@@ -18,6 +18,10 @@ export const Main = () => {
   });
 };
 
-export const getTextareaTemplate = (id: string, tag: string) => {
-  return preprocess(textareaHtml, { id, tag });
+export const getTextareaTemplate = (props: {
+  id: string;
+  tag: string;
+  placeholder: string;
+}) => {
+  return preprocess(textareaHtml, props);
 };
