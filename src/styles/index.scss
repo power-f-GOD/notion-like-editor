@@ -79,23 +79,41 @@ a {
   }
 }
 
-.menu-overlay {
+[data-caret-observer] {
   [role='menu'] {
-    transition: 0.35s, visibility 0s ease 0.35s;
-    transform: scale(0.85);
+    transition: transform 0.35s, opacity 0.35s, visibility 0s ease 0.35s;
+    transform: scale(0.8);
     opacity: 0;
-    transform-origin: top left;
     visibility: hidden;
     transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    li {
+      &,
+      button > * {
+        pointer-events: none;
+      }
+
+      button {
+        pointer-events: auto;
+      }
+    }
   }
 
   &.show-menu {
     [role='menu'] {
       visibility: visible;
-      transition: 0.35s, visibility 0s ease 0s;
+      transition: transform 0.35s, opacity 0.35s, visibility 0s ease 0s;
       transform: scale(1);
       opacity: 1;
+      transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
+  }
+}
+
+[data-textarea] {
+  &:focus:empty::after {
+    @apply opacity-40 pointer-events-none;
+    content: 'Type / for block, @ to link docs or people';
   }
 }
 
