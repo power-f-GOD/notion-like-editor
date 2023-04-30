@@ -6,13 +6,13 @@ import html from './component.html?raw';
 import itemHtml from './item.html?raw';
 
 export class Menu extends Component {
-  caretObserver!: HTMLElement;
-  menu!: HTMLElement;
-  list!: HTMLUListElement;
-  feedback!: HTMLElement;
-  bound: Partial<DOMRect> | null = null;
+  private caretObserver!: HTMLElement;
+  private menu!: HTMLElement;
+  private list!: HTMLUListElement;
+  private feedback!: HTMLElement;
+  private bound: Partial<DOMRect> | null = null;
 
-  blocks: Array<{
+  private blocks: Array<{
     title: string;
     tag: 'p' | 'h1' | 'h3' | 'h5';
     description: string;
@@ -34,13 +34,12 @@ export class Menu extends Component {
     protected template: (typeof Component)['prototype']['template'],
     protected preprocessor: typeof preprocess,
     private mainComponent: Main,
-    // private query: typeof Q,
     private icon: typeof SVGIcon
   ) {
     super(template, preprocessor);
   }
 
-  init(): void {
+  init() {
     console.log('Menu component mounted!');
     this.caretObserver = this.query('[data-caret-observer]')!;
     this.menu = this.caretObserver.querySelector(
@@ -54,18 +53,21 @@ export class Menu extends Component {
     });
   }
 
-  moveCaretToEnd = (textarea: HTMLElement & Element) => {
+  private moveTextareaCaretToPosition = (textarea: HTMLElement | Element) => {
     const range = document.createRange();
     const selection = window.getSelection();
+    const prevOffset = +((textarea as HTMLElement).dataset.offset || -1);
+    const hasOffset = prevOffset > -1;
 
-    range.selectNodeContents(textarea);
-    range.collapse(false);
+    if (hasOffset) range.setStart(textarea.childNodes[0], prevOffset);
+    range.collapse(hasOffset);
     selection!.removeAllRanges();
     selection!.addRange(range);
-    textarea.focus();
+    if (!hasOffset) selection?.collapseToEnd();
+    (textarea as HTMLElement).focus();
   };
 
-  switchContextTextarea = (e: KeyboardEvent, switchable?: boolean) => {
+  private switchContextTextarea = (e: KeyboardEvent, switchable?: boolean) => {
     const textarea = e.currentTarget as HTMLElement;
     const selection = window.getSelection();
     const range = selection && selection?.getRangeAt(0);
@@ -75,28 +77,43 @@ export class Menu extends Component {
       previousElementSibling: previousTextarea,
       nextElementSibling: nextTextarea
     } = textarea;
+    const textLength = textarea.textContent?.length || 0;
+
+    // Save current caret offset/position, so to be remembered when re-focused
+    textarea.dataset.offset = String(range?.startOffset || textLength - 1);
 
     if (switchable) {
+      const isEmpty = !textLength;
+
       if (
-        (e.key === 'ArrowUp' || e.key === 'Backspace') &&
-        caretRect!.x <= textareaRect.x &&
+        (e.key === 'ArrowUp' ||
+          e.key === 'ArrowLeft' ||
+          e.key === 'Backspace') &&
         previousTextarea
       ) {
-        e.preventDefault();
-        this.moveCaretToEnd(previousTextarea as HTMLElement);
-        if (
-          e.key === 'Backspace' &&
-          textarea.parentNode!.childElementCount! > 1
-        ) {
+        const isAtStart = range?.startOffset === 0;
+
+        if (e.key === 'Backspace' && isEmpty && isAtStart) {
+          e.preventDefault();
           textarea.parentNode?.removeChild(textarea);
         }
+
+        if (
+          e.key === 'ArrowUp' ||
+          (e.key === 'ArrowLeft' && isAtStart) ||
+          isEmpty
+        ) {
+          e.preventDefault();
+          this.moveTextareaCaretToPosition(previousTextarea);
+        }
       } else if (
-        e.key === 'ArrowDown' &&
-        (!caretRect!.x || caretRect!.bottom >= textareaRect.bottom - 5) &&
+        (e.key === 'ArrowDown' || e.key === 'ArrowRight') &&
         nextTextarea
       ) {
-        e.preventDefault();
-        this.moveCaretToEnd(nextTextarea as HTMLElement);
+        if (range?.startOffset === textLength || e.key === 'ArrowDown') {
+          e.preventDefault();
+          this.moveTextareaCaretToPosition(nextTextarea);
+        }
       } else if (e.key === 'Enter') {
         e.preventDefault();
       }
@@ -105,9 +122,8 @@ export class Menu extends Component {
     return { selection, range, caretRect, textareaRect, textarea };
   };
 
-  setMenuPosition = (e: KeyboardEvent) => {
-    const { range, caretRect, textareaRect, textarea } =
-      this.switchContextTextarea(e);
+  private setMenuPosition = (e: KeyboardEvent) => {
+    const { range, caretRect, textarea } = this.switchContextTextarea(e);
     const text = textarea.textContent!;
     const partialText = text
       .trim()
@@ -120,7 +136,6 @@ export class Menu extends Component {
 
     // We don't want the menu moving as the user types, hence we check if it's currently displaying, i.e. bound would most likely be null at this point
     if (caretRect?.y && !this.bound) this.bound = caretRect;
-    console.log({ caretRect, textareaRect });
 
     if (this.bound && canDisplayMenu) {
       if (!this.list) {
@@ -188,7 +203,7 @@ export class Menu extends Component {
     if (!canDisplayMenu) this.bound = null;
   };
 
-  appendTextarea = (
+  private appendTextarea = (
     node?: HTMLElement,
     props?: { tag: string; placeholder: string }
   ) => {
