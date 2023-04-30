@@ -2,9 +2,6 @@ export abstract class Component<
   VariableMatch extends string = string,
   VariableValue extends string = string
 > {
-  query = <El extends Element = HTMLElement>(selectors: string) =>
-    document.querySelector<El>(selectors);
-
   constructor(
     protected template: {
       html: string;
@@ -13,6 +10,9 @@ export abstract class Component<
   ) {}
 
   protected abstract init(): void;
+
+  query = <El extends Element = HTMLElement>(selectors: string) =>
+    document.querySelector<El>(selectors);
 
   preprocess<Match extends string = string, Value extends string = string>(
     input: string,
