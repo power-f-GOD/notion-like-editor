@@ -1,0 +1,96 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Menu > renders a textarea and the Menu component correctly 1`] = `
+"<main class=\\"flex flex-col container mx-auto max-w-3xl p-4 lg:px-0\\">
+  <header class=\\"flex gap-1 p-1 px-1.5 items-center justify-between border border-solid border-black/10 shadow-sm rounded-md text-sm\\">
+    <section class=\\"flex items-center gap-2.5\\">
+      <span class=\\"inline-block text-sm py-1 px-2 text-green-900 bg-green-100 rounded-md font-semibold\\">P</span>
+      <span class=\\"opacity-20\\">|</span>
+      <span class=\\"inline-flex items-center gap-1 opacity-50\\"><svg class=\\"w-4 h-4 min-w-[1rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"></rect><circle cx=\\"128\\" cy=\\"128\\" r=\\"96\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"></circle><polyline points=\\"128 72 128 128 184 128\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"></polyline></svg> Omin</span>
+      <span class=\\"opacity-20\\">|</span>
+      <span class=\\"w-5 h-5 rounded-full bg-orange-500\\"></span>
+      <span class=\\"opacity-20\\">|</span>
+      <span class=\\"inline-flex items-center gap-1 opacity-50\\"><svg class=\\"w-5 h-5 min-w-[1.25rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"></rect><line x1=\\"192\\" y1=\\"64\\" x2=\\"64\\" y2=\\"192\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"></line><polyline points=\\"168 192 64 192 64 88\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"></polyline></svg> 0</span>
+    </section>
+
+    <section class=\\"flex gap-1.5 items-center\\">
+      <span class=\\"inline-flex opacity-50\\"><svg class=\\"w-5 h-5 min-w-[1.25rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"></rect><polyline points=\\"88 136 112 160 168 104\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"></polyline><circle cx=\\"128\\" cy=\\"128\\" r=\\"96\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"></circle></svg></span>
+      <span class=\\"inline-flex text-green-700\\"><svg class=\\"w-5 h-5 min-w-[1.25rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"></rect><path d=\\"M80,128a80,80,0,1,1,80,80H72A56,56,0,1,1,85.92,97.74\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"></path></svg><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"></rect><path d=\\"M80,128a80,80,0,1,1,80,80H72A56,56,0,1,1,85.92,97.74\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"></path></svg></span>
+      <button class=\\"px-0.5 py-1\\" tabindex=\\"-1\\"><svg class=\\"w-5 h-5 min-w-[1.25rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"></rect><circle cx=\\"128\\" cy=\\"128\\" r=\\"12\\"></circle><circle cx=\\"128\\" cy=\\"60\\" r=\\"12\\"></circle><circle cx=\\"128\\" cy=\\"196\\" r=\\"12\\"></circle></svg></button>
+    </section>
+  </header>
+
+  <section>
+    <h1 class=\\"text-[2.5rem] pb-2 mt-7 mb-5 border-b border-0 border-solid border-black/10\\">
+      Front-end
+      developer test
+      project
+    </h1>
+
+    <p class=\\"opacity-80\\">
+      Your goal is to make a page that looks exactly like this one, and has the ability to create H1 text simply by
+      typing / then 1, then typing text, and hitting Enter
+    </p>
+  </section>
+
+  <section class=\\"relative mt-10\\" data-textareas-container=\\"\\"></section>
+</main><div class=\\"menu-overlay show-menu fixed top-0 lef-0 z-[1000] overflow-hidden pointer-events-none\\">
+  <div class=\\"pointer-events-auto relative\\">
+    <div class=\\"fixed top-0 left-0\\" data-caret-observer=\\"\\">
+      <span class=\\"relative inline-block w-0 h-6\\"></span>
+      <div class=\\"w-80 h-96 absolute left-0 top-full bg-white z-100 max-w-[calc(100vw-2rem)] max-h-[40vh]\\" role=\\"menu\\">
+        <section class=\\"w-full h-full relative top-0 py-3 border border-solid border-black/10 shadow-2xl rounded-lg bg-white overflow-auto\\">
+          <h2 class=\\"text-base px-3 font-semibold\\">Add blocks</h2>
+          <p class=\\"px-3 opacity-40 text-sm mb-3\\">Keep typing to filter, or escape to exit...</p>
+          <p class=\\"px-3 opacity-60 text-sm\\">
+            Filtering keyword
+            <span class=\\"bg-blue-900 text-white rounded-sm px-1 py-0.5\\" data-feedback=\\"\\">
+              /
+            </span>
+          </p>
+          <ul class=\\"list-none p-0 my-3\\"></ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>"
+`;
+
+exports[`Menu > renders a textarea and the Menu component correctly 2`] = `""`;
+
+exports[`Menu > renders the Menu component template unchanged 1`] = `
+"<div class=\\"menu-overlay show-menu fixed top-0 lef-0 z-[1000] overflow-hidden pointer-events-none\\">
+  <div class=\\"pointer-events-auto relative\\">
+    <div class=\\"fixed top-0 left-0\\" data-caret-observer>
+      <span class=\\"relative inline-block w-0 h-6\\"></span>
+      <div class=\\"w-80 h-96 absolute left-0 top-full bg-white z-100 max-w-[calc(100vw-2rem)] max-h-[40vh]\\" role=\\"menu\\">
+        <section
+          class=\\"w-full h-full relative top-0 py-3 border border-solid border-black/10 shadow-2xl rounded-lg bg-white overflow-auto\\">
+          <h2 class=\\"text-base px-3 font-semibold\\">Add blocks</h2>
+          <p class=\\"px-3 opacity-40 text-sm mb-3\\">Keep typing to filter, or escape to exit...</p>
+          <p class=\\"px-3 opacity-60 text-sm\\">
+            Filtering keyword
+            <span class='bg-blue-900 text-white rounded-sm px-1 py-0.5' data-feedback>
+              /
+            </span>
+          </p>
+          <ul class=\\"list-none p-0 my-3\\"></ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>"
+`;
+
+exports[`Menu > renders the item template unchanged 1`] = `
+"<li>
+  <button class=\\"flex text-sm px-3 py-1 items-center justify-start gap-2 rounded-none w-full\\" data-tag=\\"%tag%\\"
+    data-placeholder=\\"%placeholder%\\">
+    <span class=\\"py-0.5 inline-flex\\">%text-t%</span>
+    <span class=\\"flex flex-col items-start\\">
+      <strong class=\\"leading-5\\">%title%</strong>
+      <small class=\\"opacity-50 leading-4\\">%description%</small>
+    </span>
+  </button>
+</li>"
+`;

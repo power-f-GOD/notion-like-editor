@@ -1,0 +1,89 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Main > renders the Main component template unchanged 1`] = `
+"<main class=\\"flex flex-col container mx-auto max-w-3xl p-4 lg:px-0\\">
+  <header
+    class=\\"flex gap-1 p-1 px-1.5 items-center justify-between border border-solid border-black/10 shadow-sm rounded-md text-sm\\">
+    <section class=\\"flex items-center gap-2.5\\">
+      <span class=\\"inline-block text-sm py-1 px-2 text-green-900 bg-green-100 rounded-md font-semibold\\">P</span>
+      <span class=\\"opacity-20\\">|</span>
+      <span class=\\"inline-flex items-center gap-1 opacity-50\\">%clock% Omin</span>
+      <span class=\\"opacity-20\\">|</span>
+      <span class=\\"w-5 h-5 rounded-full bg-orange-500\\"></span>
+      <span class=\\"opacity-20\\">|</span>
+      <span class=\\"inline-flex items-center gap-1 opacity-50\\">%arrow-down-left% 0</span>
+    </section>
+
+    <section class=\\"flex gap-1.5 items-center\\">
+      <span class=\\"inline-flex opacity-50\\">%check-circle%</span>
+      <span class=\\"inline-flex text-green-700\\">%cloud%</span>
+      <button class=\\"px-0.5 py-1\\" tabindex=\\"-1\\">%dots-three-vertical%</button>
+    </section>
+  </header>
+
+  <section>
+    <h1 class=\\"text-[2.5rem] pb-2 mt-7 mb-5 border-b border-0 border-solid border-black/10\\">
+      Front-end
+      developer test
+      project
+    </h1>
+
+    <p class=\\"opacity-80\\">
+      Your goal is to make a page that looks exactly like this one, and has the ability to create H1 text simply by
+      typing / then 1, then typing text, and hitting Enter
+    </p>
+  </section>
+
+  <section class=\\"relative mt-10\\" data-textareas-container></section>
+</main>"
+`;
+
+exports[`Main > renders the Main component's resultant html unchanged 1`] = `
+"<main class=\\"flex flex-col container mx-auto max-w-3xl p-4 lg:px-0\\">
+  <header
+    class=\\"flex gap-1 p-1 px-1.5 items-center justify-between border border-solid border-black/10 shadow-sm rounded-md text-sm\\">
+    <section class=\\"flex items-center gap-2.5\\">
+      <span class=\\"inline-block text-sm py-1 px-2 text-green-900 bg-green-100 rounded-md font-semibold\\">P</span>
+      <span class=\\"opacity-20\\">|</span>
+      <span class=\\"inline-flex items-center gap-1 opacity-50\\"><svg class=\\"w-4 h-4 min-w-[1rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"/><circle cx=\\"128\\" cy=\\"128\\" r=\\"96\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/><polyline points=\\"128 72 128 128 184 128\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/></svg> Omin</span>
+      <span class=\\"opacity-20\\">|</span>
+      <span class=\\"w-5 h-5 rounded-full bg-orange-500\\"></span>
+      <span class=\\"opacity-20\\">|</span>
+      <span class=\\"inline-flex items-center gap-1 opacity-50\\"><svg class=\\"w-5 h-5 min-w-[1.25rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"/><line x1=\\"192\\" y1=\\"64\\" x2=\\"64\\" y2=\\"192\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/><polyline points=\\"168 192 64 192 64 88\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/></svg> 0</span>
+    </section>
+
+    <section class=\\"flex gap-1.5 items-center\\">
+      <span class=\\"inline-flex opacity-50\\"><svg class=\\"w-5 h-5 min-w-[1.25rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"/><polyline points=\\"88 136 112 160 168 104\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/><circle cx=\\"128\\" cy=\\"128\\" r=\\"96\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/></svg></span>
+      <span class=\\"inline-flex text-green-700\\"><svg class=\\"w-5 h-5 min-w-[1.25rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"/><path d=\\"M80,128a80,80,0,1,1,80,80H72A56,56,0,1,1,85.92,97.74\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/></svg><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"/><path d=\\"M80,128a80,80,0,1,1,80,80H72A56,56,0,1,1,85.92,97.74\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/></svg></span>
+      <button class=\\"px-0.5 py-1\\" tabindex=\\"-1\\"><svg class=\\"w-5 h-5 min-w-[1.25rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"/><circle cx=\\"128\\" cy=\\"128\\" r=\\"12\\"/><circle cx=\\"128\\" cy=\\"60\\" r=\\"12\\"/><circle cx=\\"128\\" cy=\\"196\\" r=\\"12\\"/></svg></button>
+    </section>
+  </header>
+
+  <section>
+    <h1 class=\\"text-[2.5rem] pb-2 mt-7 mb-5 border-b border-0 border-solid border-black/10\\">
+      Front-end
+      developer test
+      project
+    </h1>
+
+    <p class=\\"opacity-80\\">
+      Your goal is to make a page that looks exactly like this one, and has the ability to create H1 text simply by
+      typing / then 1, then typing text, and hitting Enter
+    </p>
+  </section>
+
+  <section class=\\"relative mt-10\\" data-textareas-container></section>
+</main>"
+`;
+
+exports[`Main > renders the textarea component's resultant html unchanged 1`] = `
+"<p
+  class=\\"relative left-0 top-0 z-10 mb-2 ring-none outline-none whitespace-pre-wrap max-w-full break-words overflow-hidden\\"
+  contenteditable=\\"true\\" id=\\"textarea\\" data-textarea placeholder=\\"Type / for variants.\\"></p>"
+`;
+
+exports[`Main > renders the textarea template unchanged 1`] = `
+"<%tag%
+  class=\\"relative left-0 top-0 z-10 mb-2 ring-none outline-none whitespace-pre-wrap max-w-full break-words overflow-hidden\\"
+  contenteditable=\\"true\\" id=\\"%id%\\" data-textarea placeholder=\\"%placeholder%\\"></%tag%>"
+`;

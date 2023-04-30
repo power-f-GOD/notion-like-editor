@@ -1,0 +1,57 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Nav > renders the Nav component template unchanged 1`] = `
+"<nav class=\\"\\">
+  <div class=\\"flex px-3 py-2 gap-5 justify-between sm:py-3.5 sm:px-3\\">
+    <section class=\\"flex max-w-[50%] items-center\\">
+      <button class=\\"p-2\\" tabindex=\\"-1\\">%caret-double-right%</button>
+
+      <span
+        class=\\"flex items-center gap-0.5 pl-5 opacity-50 max-w-[calc(100%-2.5rem)] sm:max-w-[calc(100%-2.25rem)] sm:pl-10\\">
+        %book-open% <span class=\\"ml-1.5 truncate\\"><a href='#!' class=\\"font-semibold\\">Main</a>
+          <span class=\\"mx-1.5\\">/</span> Getting
+          Started
+          <span class=\\"mx-1.5\\">/</span>
+          Front-end developer test
+          project</span>
+      </span>
+    </section>
+
+    <section class=\\"flex items-center gap-2 max-w-[calc(50%-1.25rem)]\\">
+      <button class=\\"opacity-50 gap-2 p-2.5 hidden md:inline-flex\\" tabindex=\\"-1\\">
+        %lock-key-open% Editing
+      </button>
+      <hr class=\\"h-5 hidden md:block\\" />
+      <button class=\\"text-blue-500 font-semibold gap-2 p-2.5 py-2\\" tabindex=\\"-1\\">Publish Space %caret-down%</button>
+    </section>
+  </div>
+</nav>"
+`;
+
+exports[`Nav > renders the Nav component's resultant html unchanged 1`] = `
+"<nav class=\\"\\">
+  <div class=\\"flex px-3 py-2 gap-5 justify-between sm:py-3.5 sm:px-3\\">
+    <section class=\\"flex max-w-[50%] items-center\\">
+      <button class=\\"p-2\\" tabindex=\\"-1\\"><svg class=\\"w-4 h-4 min-w-[1rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"/><polyline points=\\"56 48 136 128 56 208\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/><polyline points=\\"136 48 216 128 136 208\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/></svg></button>
+
+      <span
+        class=\\"flex items-center gap-0.5 pl-5 opacity-50 max-w-[calc(100%-2.5rem)] sm:max-w-[calc(100%-2.25rem)] sm:pl-10\\">
+        <svg class=\\"w-5 h-5 min-w-[1.25rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"/><path d=\\"M128,88a32,32,0,0,1,32-32h64a8,8,0,0,1,8,8V192a8,8,0,0,1-8,8H160a32,32,0,0,0-32,32\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/><path d=\\"M24,192a8,8,0,0,0,8,8H96a32,32,0,0,1,32,32V88A32,32,0,0,0,96,56H32a8,8,0,0,0-8,8Z\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/></svg> <span class=\\"ml-1.5 truncate\\"><a href='#!' class=\\"font-semibold\\">Main</a>
+          <span class=\\"mx-1.5\\">/</span> Getting
+          Started
+          <span class=\\"mx-1.5\\">/</span>
+          Front-end developer test
+          project</span>
+      </span>
+    </section>
+
+    <section class=\\"flex items-center gap-2 max-w-[calc(50%-1.25rem)]\\">
+      <button class=\\"opacity-50 gap-2 p-2.5 hidden md:inline-flex\\" tabindex=\\"-1\\">
+        <svg class=\\"w-5 h-5 min-w-[1.25rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"/><rect x=\\"40\\" y=\\"88\\" width=\\"176\\" height=\\"128\\" rx=\\"8\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/><path d=\\"M88,88V56a40,40,0,0,1,40-40c19.35,0,36.29,13.74,40,32\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/><circle cx=\\"128\\" cy=\\"140\\" r=\\"20\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/><line x1=\\"128\\" y1=\\"160\\" x2=\\"128\\" y2=\\"184\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/></svg> Editing
+      </button>
+      <hr class=\\"h-5 hidden md:block\\" />
+      <button class=\\"text-blue-500 font-semibold gap-2 p-2.5 py-2\\" tabindex=\\"-1\\">Publish Space <svg class=\\"w-5 h-5 min-w-[1.25rem]\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 256 256\\"><rect width=\\"256\\" height=\\"256\\" fill=\\"none\\"/><polyline points=\\"208 96 128 176 48 96\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"16\\"/></svg></button>
+    </section>
+  </div>
+</nav>"
+`;
