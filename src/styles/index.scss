@@ -63,6 +63,18 @@ p {
   margin-bottom: 0;
 }
 
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.25em;
+}
+
 a {
   @apply transition-all duration-300;
 
@@ -108,7 +120,7 @@ a {
     }
   }
 
-  &.show-menu {
+  &[data-showmenu='true'] {
     [role='menu'] {
       visibility: visible;
       transition: transform 0.35s, opacity 0.35s, visibility 0s ease 0s;

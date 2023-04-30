@@ -8,7 +8,10 @@ export const preprocess = <Match extends string, Value extends string = string>(
   let match: Match;
 
   for (match in variables) {
-    processed = processed.replace(`%${match}%`, variables[match]!);
+    processed = processed.replace(
+      new RegExp(`%${match}%`, 'g'),
+      variables[match]!
+    );
   }
 
   return processed;

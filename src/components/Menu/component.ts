@@ -10,11 +10,11 @@ export class Menu extends Component {
   private menu!: HTMLElement;
   private list!: HTMLUListElement;
   private feedback!: HTMLElement;
-  private bound: Partial<DOMRect> | null = null;
+  private caretRect: Partial<DOMRect> | null = null;
 
   private blocks: Array<{
     title: string;
-    tag: 'p' | 'h1' | 'h3' | 'h5';
+    tag: 'p' | 'h1' | 'h2' | 'h3';
     description: string;
     placeholder?: string;
   }> = [
@@ -23,11 +23,11 @@ export class Menu extends Component {
       tag: 'p',
       description: 'Plain text or paragraph.',
       placeholder:
-        "Type / for block, (@ to link docs or people doesn't work for now😌)"
+        "Type '/' for block, ('@' to link docs or people doesn't work for now😌)"
     },
     { title: 'Heading 1', tag: 'h1', description: 'Big section heading.' },
-    { title: 'Heading 2', tag: 'h3', description: 'Medium section heading.' },
-    { title: 'Heading 3', tag: 'h5', description: 'Small section heading.' }
+    { title: 'Heading 2', tag: 'h2', description: 'Medium section heading.' },
+    { title: 'Heading 3', tag: 'h3', description: 'Small section heading.' }
   ];
 
   constructor(
@@ -45,20 +45,25 @@ export class Menu extends Component {
     this.menu = this.caretObserver.querySelector(
       "[role='menu']"
     ) as HTMLElement;
+    this.list = this.menu.querySelector('ul')!;
+    this.feedback = this.menu.querySelector('[data-feedback]')!;
     this.appendTextarea();
     document.body.addEventListener('click', (e) => {
       if (!this.menu.contains(e.target as HTMLElement)) {
-        this.caretObserver.classList.remove('show-menu');
+        this.showMenu(false);
       }
     });
+  }
+
+  private showMenu(show: boolean) {
+    this.caretObserver.dataset.showmenu = String(show);
   }
 
   private moveTextareaCaretToPosition = (textarea: HTMLElement | Element) => {
     const range = document.createRange();
     const selection = window.getSelection();
     const prevOffset = +((textarea as HTMLElement).dataset.offset || -1);
-    const hasOffset =
-      prevOffset > -1 && prevOffset <= textarea.childNodes.length;
+    const hasOffset = prevOffset > -1;
 
     if (hasOffset) range.setStart(textarea.childNodes[0], prevOffset);
     range.collapse(hasOffset);
@@ -116,8 +121,15 @@ export class Menu extends Component {
           this.moveTextareaCaretToPosition(nextTextarea);
         }
       } else if (e.key === 'Enter') {
-        this.caretObserver.classList.remove('show-menu');
         e.preventDefault();
+        // We don't want duplicate textareas to be added when menu is displaying as the click listener on the menu adds that for us
+        this.appendTextarea(
+          textarea,
+          this.list.querySelector('button')?.dataset as
+            | { tag: string; placeholder: string }
+            | undefined
+        );
+        this.showMenu(false);
       }
     }
 
@@ -133,21 +145,15 @@ export class Menu extends Component {
         Math.max((range?.startOffset || 0) - 8, 0),
         (range?.startOffset || 0) + 1
       );
-    const canDisplayMenu =
-      e.key && partialText.includes('/') && e.key !== 'Escape';
+    const canShowMenu = partialText.includes('/') && e.key !== 'Escape';
 
     // We don't want the menu moving as the user types, hence we check if it's currently displaying, i.e. bound would most likely be null at this point
-    if (caretRect?.y && !this.bound) this.bound = caretRect;
+    if (caretRect?.y && !this.caretRect) this.caretRect = caretRect;
 
-    if (this.bound && canDisplayMenu) {
-      if (!this.list) {
-        this.list = this.menu.querySelector('ul')!;
-        this.feedback = this.menu.querySelector('[data-feedback]')!;
-      }
-
+    if (this.caretRect && canShowMenu) {
       const textFilter = partialText.replace(/.*\/\s*(\w*)/, '$1');
       const left =
-        this.bound.left ||
+        this.caretRect.left ||
         (textarea.offsetParent as HTMLElement).offsetLeft ||
         0;
 
@@ -184,11 +190,11 @@ export class Menu extends Component {
           textarea,
           itemElement.dataset as { tag: string; placeholder: string }
         );
-        this.caretObserver.classList.remove('show-menu');
+        this.showMenu(false);
       };
-      this.caretObserver.style.top = `${this.bound.top || 0}px`;
+      this.caretObserver.style.top = `${this.caretRect.top || 0}px`;
       this.caretObserver.style.left = `${left}px`;
-      this.caretObserver.style.height = `${this.bound.height || 0}px`;
+      this.caretObserver.style.height = `${this.caretRect.height || 0}px`;
 
       // Move menu accordingly in x-axis if all part of it is not visible within the screen
       if (left + 336 > window.innerWidth) {
@@ -216,10 +222,8 @@ export class Menu extends Component {
       }
     }
 
-    this.caretObserver.classList[canDisplayMenu ? 'add' : 'remove'](
-      'show-menu'
-    );
-    if (!canDisplayMenu) this.bound = null;
+    this.showMenu(canShowMenu);
+    if (!canShowMenu) this.caretRect = null;
   };
 
   private appendTextarea = (
@@ -244,21 +248,15 @@ export class Menu extends Component {
 
     const textarea = this.query(`#${id}`)!;
 
-    // textarea.dataset.i = String(
-    //   +(
-    //     (textarea.previousElementSibling as HTMLElement | null)?.dataset.i || -1
-    //   ) + 1
-    // );
     textarea.addEventListener('keydown', (e) => {
       this.switchContextTextarea(e, true);
     });
     textarea.addEventListener('keyup', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
-        this.appendTextarea(textarea);
       } else this.setMenuPosition(e as any);
     });
-    textarea.addEventListener('blur', () => (this.bound = null));
+    textarea.addEventListener('blur', () => (this.caretRect = null));
     textarea.focus();
   };
 }
