@@ -116,7 +116,11 @@ export class Menu extends Component {
           textarea.parentNode?.removeChild(textarea);
         }
 
-        if (e.key === 'ArrowUp' || isAtStart || isEmpty) {
+        if (
+          e.key === 'ArrowUp' ||
+          (isAtStart && range.startOffset === range.endOffset) ||
+          isEmpty
+        ) {
           e.preventDefault();
           this.moveTextareaCaretToPosition(
             previousTextarea,
