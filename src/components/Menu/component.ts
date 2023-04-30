@@ -1,4 +1,3 @@
-import { preprocess } from 'src/utils';
 import { SVGIcon } from '../SVGIcon';
 import { Main, main } from '../Main/component';
 import { Component } from 'src/types';
@@ -32,11 +31,10 @@ export class Menu extends Component {
 
   constructor(
     protected template: (typeof Component)['prototype']['template'],
-    protected preprocessor: typeof preprocess,
     private mainComponent: Main,
     private icon: typeof SVGIcon
   ) {
-    super(template, preprocessor);
+    super(template);
   }
 
   init() {
@@ -59,11 +57,25 @@ export class Menu extends Component {
     this.caretObserver.dataset.showmenu = String(show);
   }
 
-  private moveTextareaCaretToPosition = (textarea: HTMLElement | Element) => {
+  private removeSlash(textarea: HTMLElement) {
+    textarea.textContent! = textarea.textContent!.replace(
+      '/' + this.feedback.textContent!.replace('...', ''),
+      ''
+    );
+  }
+
+  private moveTextareaCaretToPosition = (
+    textarea: HTMLElement | Element,
+    toEnd?: boolean
+  ) => {
+    const text = textarea.childNodes[0]?.textContent;
     const range = document.createRange();
     const selection = window.getSelection();
-    const prevOffset = +((textarea as HTMLElement).dataset.offset || -1);
-    const hasOffset = prevOffset > -1;
+    const prevOffset = +(
+      (toEnd ? text?.length : (textarea as HTMLElement).dataset.offset) || -1
+    );
+    const hasOffset =
+      prevOffset > -1 && prevOffset <= (text?.length || -Infinity);
 
     if (hasOffset) range.setStart(textarea.childNodes[0], prevOffset);
     range.collapse(hasOffset);
@@ -104,13 +116,12 @@ export class Menu extends Component {
           textarea.parentNode?.removeChild(textarea);
         }
 
-        if (
-          e.key === 'ArrowUp' ||
-          (e.key === 'ArrowLeft' && isAtStart) ||
-          isEmpty
-        ) {
+        if (e.key === 'ArrowUp' || isAtStart || isEmpty) {
           e.preventDefault();
-          this.moveTextareaCaretToPosition(previousTextarea);
+          this.moveTextareaCaretToPosition(
+            previousTextarea,
+            e.key === 'Backspace'
+          );
         }
       } else if (
         (e.key === 'ArrowDown' || e.key === 'ArrowRight') &&
@@ -121,13 +132,17 @@ export class Menu extends Component {
           this.moveTextareaCaretToPosition(nextTextarea);
         }
       } else if (e.key === 'Enter') {
+        const isShowingMenu = this.caretObserver.dataset.showmenu === 'true';
+
         e.preventDefault();
-        // We don't want duplicate textareas to be added when menu is displaying as the click listener on the menu adds that for us
+        if (isShowingMenu) this.removeSlash(textarea);
         this.appendTextarea(
           textarea,
-          this.list.querySelector('button')?.dataset as
-            | { tag: string; placeholder: string }
-            | undefined
+          isShowingMenu
+            ? (this.list.querySelector('button')?.dataset as
+                | { tag: string; placeholder: string }
+                | undefined)
+            : undefined
         );
         this.showMenu(false);
       }
@@ -139,19 +154,18 @@ export class Menu extends Component {
   private setMenuPosition = (e: KeyboardEvent) => {
     const { range, caretRect, textarea } = this.switchContextTextarea(e);
     const text = textarea.textContent!;
-    const partialText = text
-      .trim()
-      .slice(
-        Math.max((range?.startOffset || 0) - 8, 0),
-        (range?.startOffset || 0) + 1
-      );
-    const canShowMenu = partialText.includes('/') && e.key !== 'Escape';
+    const partialText = text.slice(
+      Math.max((range?.startOffset || 0) - 8, 0),
+      (range?.startOffset || 0) + 1
+    );
+    const canShowMenu =
+      /\/\s?([^\s]+)?$/.test(partialText) && e.key !== 'Escape';
 
     // We don't want the menu moving as the user types, hence we check if it's currently displaying, i.e. bound would most likely be null at this point
     if (caretRect?.y && !this.caretRect) this.caretRect = caretRect;
 
     if (this.caretRect && canShowMenu) {
-      const textFilter = partialText.replace(/.*\/\s*(\w*)/, '$1');
+      const textFilter = partialText.trim().replace(/.*\/(\s?([^\s]+)?)/, '$1');
       const left =
         this.caretRect.left ||
         (textarea.offsetParent as HTMLElement).offsetLeft ||
@@ -159,7 +173,7 @@ export class Menu extends Component {
 
       // Add menu list items
       this.list.innerHTML = '';
-      this.feedback.textContent = textFilter || '/';
+      this.feedback.textContent = textFilter || '...';
       this.blocks
         .filter(
           (block) =>
@@ -169,7 +183,7 @@ export class Menu extends Component {
         .forEach((block) => {
           this.list.insertAdjacentHTML(
             'beforeend',
-            preprocess(itemHtml, {
+            this.preprocess(itemHtml, {
               ...block,
               placeholder: block.placeholder || block.title,
               'text-t': this.icon('text-t', 'min-w-[1.75rem] opacity-40')
@@ -186,6 +200,7 @@ export class Menu extends Component {
         const itemElement = e.target as HTMLElement;
 
         if (itemElement.tagName !== 'BUTTON') return;
+        this.removeSlash(textarea);
         this.appendTextarea(
           textarea,
           itemElement.dataset as { tag: string; placeholder: string }
@@ -261,4 +276,4 @@ export class Menu extends Component {
   };
 }
 
-export const menu = new Menu({ html }, preprocess, main, SVGIcon);
+export const menu = new Menu({ html }, main, SVGIcon);

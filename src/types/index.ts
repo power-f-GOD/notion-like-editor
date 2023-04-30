@@ -1,5 +1,3 @@
-import { preprocess as _preprocess } from 'src/utils';
-
 export abstract class Component<
   VariableMatch extends string = string,
   VariableValue extends string = string
@@ -11,11 +9,29 @@ export abstract class Component<
     protected template: {
       html: string;
       variables?: Partial<Record<VariableMatch, VariableValue>>;
-    },
-    protected preprocess: typeof _preprocess
+    }
   ) {}
 
   protected abstract init(): void;
+
+  preprocess<Match extends string = string, Value extends string = string>(
+    input: string,
+    variables?: Partial<Record<Match, Value>>
+  ) {
+    if (!variables) return input;
+
+    let processed = input.slice();
+    let match: Match;
+
+    for (match in variables) {
+      processed = processed.replace(
+        new RegExp(`%${match}%`, 'g'),
+        variables[match]!
+      );
+    }
+
+    return processed;
+  }
 
   render() {
     // defer (or delay with setTimeout) till after component/element is mounted before (proceeding and) adding listeners
