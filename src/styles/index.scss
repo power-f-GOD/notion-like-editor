@@ -95,6 +95,15 @@ a {
 
       button {
         pointer-events: auto;
+
+        &:hover,
+        &:focus {
+          background: rgba(0, 0, 0, 0.05) !important;
+        }
+      }
+
+      &:first-child button {
+        background: rgba(0, 0, 0, 0.025);
       }
     }
   }

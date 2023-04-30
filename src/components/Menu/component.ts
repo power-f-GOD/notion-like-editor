@@ -57,7 +57,8 @@ export class Menu extends Component {
     const range = document.createRange();
     const selection = window.getSelection();
     const prevOffset = +((textarea as HTMLElement).dataset.offset || -1);
-    const hasOffset = prevOffset > -1;
+    const hasOffset =
+      prevOffset > -1 && prevOffset <= textarea.childNodes.length;
 
     if (hasOffset) range.setStart(textarea.childNodes[0], prevOffset);
     range.collapse(hasOffset);
@@ -115,6 +116,7 @@ export class Menu extends Component {
           this.moveTextareaCaretToPosition(nextTextarea);
         }
       } else if (e.key === 'Enter') {
+        this.caretObserver.classList.remove('show-menu');
         e.preventDefault();
       }
     }
@@ -188,12 +190,29 @@ export class Menu extends Component {
       this.caretObserver.style.left = `${left}px`;
       this.caretObserver.style.height = `${this.bound.height || 0}px`;
 
-      if (left + 320 > window.innerWidth) {
-        this.menu.style.transformOrigin = `${left}px top`;
+      // Move menu accordingly in x-axis if all part of it is not visible within the screen
+      if (left + 336 > window.innerWidth) {
+        this.menu.style.transformOrigin = `${window.innerWidth - left}px top`;
         this.menu.style.left = `${window.innerWidth - (left + 336)}px`;
       } else {
         this.menu.style.left = '0';
         this.menu.style.transformOrigin = 'left top';
+      }
+
+      // Move menu accordingly in y-axis if all part of it is not visible within the screen
+      if (
+        this.menu.offsetHeight >
+        window.innerHeight - this.caretObserver.offsetTop - 32
+      ) {
+        this.menu.style.bottom = '100%';
+        this.menu.style.top = 'unset';
+        this.menu.style.transformOrigin =
+          this.menu.style.transformOrigin.replace('top', 'bottom');
+      } else {
+        this.menu.style.bottom = 'unset';
+        this.menu.style.top = '100%';
+        this.menu.style.transformOrigin =
+          this.menu.style.transformOrigin.replace('bottom', 'top');
       }
     }
 
