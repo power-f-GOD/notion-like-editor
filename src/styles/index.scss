@@ -30,7 +30,7 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow: auto;
-  animation: fadeIn 1.5s ease;
+  animation: fadeIn 1s ease;
 }
 
 @keyframes fadeIn {
@@ -136,7 +136,7 @@ a {
     }
   }
 
-  &[data-showmenu='true'] {
+  &[data-show-menu='true'] {
     [role='menu'] {
       visibility: visible;
       transition: transform 0.35s, opacity 0.35s, visibility 0s ease 0s;

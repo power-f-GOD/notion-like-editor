@@ -54,7 +54,11 @@ export class Menu extends Component {
   }
 
   private showMenu(show: boolean) {
-    this.caretObserver.dataset.showmenu = String(show);
+    this.caretObserver.dataset.showMenu = String(show);
+  }
+
+  private get isShowingMenu() {
+    return this.caretObserver.dataset.showMenu === 'true';
   }
 
   private removeSlash(textarea: HTMLElement) {
@@ -136,13 +140,11 @@ export class Menu extends Component {
           this.moveTextareaCaretToPosition(nextTextarea);
         }
       } else if (e.key === 'Enter') {
-        const isShowingMenu = this.caretObserver.dataset.showmenu === 'true';
-
         e.preventDefault();
-        if (isShowingMenu) this.removeSlash(textarea);
+        if (this.isShowingMenu) this.removeSlash(textarea);
         this.appendTextarea(
           textarea,
-          isShowingMenu
+          this.isShowingMenu
             ? (this.list.querySelector('button')?.dataset as
                 | { tag: string; placeholder: string }
                 | undefined)
@@ -211,6 +213,14 @@ export class Menu extends Component {
         );
         this.showMenu(false);
       };
+      this.list.onkeydown = (e) => {
+        if (e.key === 'Escape') {
+          this.showMenu(false);
+          this.query(`#${document.body.dataset.activetextarea}`)?.focus();
+        }
+
+        if (!this.isShowingMenu) this.list.onkeydown = null;
+      };
       this.caretObserver.style.top = `${this.caretRect.top || 0}px`;
       this.caretObserver.style.left = `${left}px`;
       this.caretObserver.style.height = `${this.caretRect.height || 0}px`;
@@ -243,6 +253,7 @@ export class Menu extends Component {
 
     this.showMenu(canShowMenu);
     if (!canShowMenu) this.caretRect = null;
+    document.body.dataset.activetextarea = textarea.id;
   };
 
   private appendTextarea = (

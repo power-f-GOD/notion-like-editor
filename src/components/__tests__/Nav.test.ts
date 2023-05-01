@@ -18,6 +18,9 @@ describe('Nav', () => {
 
     expect(initSpy).not.toHaveBeenCalled();
     nav.render();
-    setTimeout(() => expect(initSpy).toHaveBeenCalled());
+    await new Promise((resolve) => {
+      setTimeout(resolve);
+    });
+    expect(initSpy).toHaveBeenCalled();
   });
 });

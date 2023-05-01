@@ -23,7 +23,8 @@
     "paths": {
       "src/*": ["./src/*"]
     },
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": ["jest", "@testing-library/jest-dom"]
   },
   "exclude": ["node_modules"]
 }
