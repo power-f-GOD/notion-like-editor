@@ -30,9 +30,7 @@ var y=Object.defineProperty;var b=(c,s,e)=>s in c?y(c,s,{enumerable:!0,configura
       <span class="opacity-20">|</span>
       <span class="inline-flex items-center gap-1 opacity-50">%clock% Omin</span>
       <span class="opacity-20">|</span>
-      <span class="w-5 h-5 rounded-full bg-orange-500">
-        <!-- <img src="" alt=""> -->
-      </span>
+      <span class="w-5 h-5 rounded-full bg-orange-500"></span>
       <span class="opacity-20">|</span>
       <span class="inline-flex items-center gap-1 opacity-50">%arrow-down-left% 0</span>
     </section>
@@ -45,7 +43,8 @@ var y=Object.defineProperty;var b=(c,s,e)=>s in c?y(c,s,{enumerable:!0,configura
   </header>
 
   <section>
-    <h1 class="text-[2.5rem] pb-2 mt-7 mb-5 border-b border-0 border-solid border-black/10">Front-end
+    <h1 class="text-[2.5rem] pb-2 mt-7 mb-5 border-b border-0 border-solid border-black/10">
+      Front-end
       developer test
       project
     </h1>
