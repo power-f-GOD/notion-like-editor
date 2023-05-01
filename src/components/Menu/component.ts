@@ -271,8 +271,13 @@ export class Menu extends Component {
       '[data-textareas-container]'
     ) as HTMLElement;
 
-    if (node) node.insertAdjacentHTML('afterend', template);
-    else {
+    if (node) {
+      node.insertAdjacentHTML('afterend', template);
+
+      if (!node.textContent!.length && !/^H\d/i.test(node.tagName)) {
+        node.parentNode?.removeChild(node);
+      }
+    } else {
       textareasContainer.insertAdjacentHTML('beforeend', template);
     }
 

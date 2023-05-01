@@ -147,10 +147,21 @@ a {
   }
 }
 
-[data-textarea] {
-  &:focus:empty::after {
+h1,
+h2,
+h3,
+[data-textarea]:focus {
+  &:empty::after {
     @apply opacity-40 pointer-events-none;
     content: attr(placeholder);
+  }
+}
+
+h1,
+h2,
+h3 {
+  &:empty::after {
+    opacity: 0.2 !important;
   }
 }
 
