@@ -30,15 +30,27 @@ pm dev
 
 ## Tests
 
-The project uses [Vitest](https://vitest.dev/) as the test runner/framework.
+### Unit
 
-To run the tests, simply run the following command:
+The project uses [Vitest](https://vitest.dev/) as its unit test runner/framework.
+
+To run the unit tests, simply run the following command:
 
 ```zsh
 pm test
 ```
 
-See `package.json` for the rest test scripts.
+### e2e
+
+The project uses [Playwright](https://playwright.dev/) as its e2e test runner/framework.
+
+To run the e2e tests, simply run the following command:
+
+```zsh
+pm e2e
+```
+
+`PS.` See `package.json` for the rest test scripts.
 
 ## Contributing
 

@@ -5,10 +5,6 @@ test('test', async ({ page, baseURL }) => {
 
   await page.goto(url);
 
-  console.log({
-    url
-  });
-
   const textarea = page.locator(
     `[placeholder="Type '/' for block, ('@' to link docs or people doesn't work for now😌)"]:first-child`
   );
